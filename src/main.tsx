@@ -18,6 +18,7 @@ if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
   root.render(
     <QueryClientProvider client={queryClient}>
+      <h1>NewsNow - 全网实时热点聚合阅读平台</h1>
       <RouterProvider router={router} />
     </QueryClientProvider>,
   )
