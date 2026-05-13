@@ -1,6 +1,5 @@
 name: IndexNow 链接自动推送
 
-# 保留你原来的触发逻辑：手动触发 + 仅 urls.txt 更新触发
 on:
   workflow_dispatch:
   push:
@@ -13,27 +12,40 @@ jobs:
   push-to-indexnow:
     runs-on: ubuntu-latest
     steps:
-      - name: 拉取仓库代码
+      - name: 拉取代码
         uses: actions/checkout@v4
 
-      - name: IndexNow 批量推送链接
+      - name: 推送 IndexNow 收录
         run: |
-          # 配置自己的站点、密钥、密钥文件地址
+          # ========== 请修改这里 ==========
           SITE="https://weiqinzhang.top"
           KEY="3390820e68134f76bf5527810f957fd0"
-          KEY_LOC="${SITE}/3390820e68134f76bf5527810f957fd0.txt"
+          KEY_LOCATION="${SITE}/3390820e68134f76bf5527810f957fd0.txt"
+          # =================================
 
-          # 校验 urls.txt 是否存在
+          # 检查文件
           if [ ! -f urls.txt ]; then
-            echo "未找到 urls.txt 文件"
+            echo "❌ 未找到 urls.txt 文件"
             exit 1
           fi
 
-          # 逐行读取链接并提交 IndexNow
+          echo "✅ 开始批量推送链接到 IndexNow..."
+          echo "===================================="
+
+          # 逐行推送并显示结果
           while IFS= read -r url; do
-            # 跳过空行
-            [ -z "$url" ] && continue
-            echo "正在推送：$url"
-            curl -s "https://api.indexnow.org/indexnow?url=${url}&key=${KEY}&keyLocation=${KEY_LOC}"
-            echo -e "\n"
+            if [ -z "$url" ]; then
+              continue
+            fi
+            
+            echo "🔗 正在推送: $url"
+            response=$(curl -s -w "\n%{http_code}" "https://api.indexnow.org/indexnow?url=${url}&key=${KEY}&keyLocation=${KEY_LOCATION}")
+            body=$(echo "$response" | head -n -1)
+            code=$(echo "$response" | tail -n 1)
+            
+            echo "📩 结果: $body"
+            echo "✅ 状态码: $code"
+            echo "------------------------------------"
           done < urls.txt
+
+          echo "🎉 所有链接推送完成！"
