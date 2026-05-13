@@ -1,24 +1,25 @@
-# 名字：百度自动推送收录（可改，随便写）
+# 百度链接自动推送
 name: 百度链接自动推送
 
-# 触发条件：代码推送到main分支时，自动执行
+# 触发条件（重点：加了手动触发 + 代码更新触发）
 on:
+  # 👇 这一行是新加的！开启手动运行按钮（解决你的问题）
+  workflow_dispatch:
+  # 代码推送到main分支自动触发
   push:
     branches:
-      - main  # 你的部署分支，99%的人都是main，不用改
+      - main
     paths:
-      - urls.txt  # 可选：只有urls.txt更新时才推送（更精准，推荐保留）
+      - urls.txt
 
 # 自动化任务
 jobs:
   push-to-baidu:
-    # 运行环境（不用管，默认）
     runs-on: ubuntu-latest
-    # 执行步骤
     steps:
-      - name: 拉取仓库代码
+      - name: 拉取代码
         uses: actions/checkout@v4
 
-      - name: 推送给百度收录
+      - name: 推送百度收录
         run: |
           curl -H 'Content-Type:text/plain' --data-binary @urls.txt "http://data.zz.baidu.com/urls?site=https://weiqinzhang.top&token=FUY3EZ2ObHAeUSVM"
