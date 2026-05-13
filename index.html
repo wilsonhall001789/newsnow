@@ -2,6 +2,7 @@
 <html lang="zh-CN" class="dark">
 
 <head>
+  <title>NewsNow - 实时新闻聚合阅读器 | 全球热点资讯平台</title>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/icon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,6 +19,9 @@
   <meta property="og:url" content="https://newsnow.busiyi.world" />
   <meta property="og:image" content="https://newsnow.busiyi.world/og-image.png" />
 
+   <!-- 6. 百度站点验证 -->
+  <meta name="baidu-site-verification" content="codeva-7I73WYLrdV" />
+  
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="NewsNow - 优雅的新闻聚合阅读器" />
@@ -56,10 +60,11 @@
       window.history.replaceState({}, document.title, window.location.pathname)
     }
   </script>
-  <title>NewsNow</title>
 </head>
 
 <body>
+  <!-- 11. 可见H1，爬虫抓取 -->
+  <h1>NewsNow - 全网实时热点聚合阅读平台</h1>
   <div id="app"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
