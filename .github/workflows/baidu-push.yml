@@ -3,8 +3,10 @@ name: 百度链接自动推送
 
 # 触发条件（重点：加了手动触发 + 代码更新触发）
 on:
-  # 👇 这一行是新加的！开启手动运行按钮（解决你的问题）
-  workflow_dispatch:
+  schedule:
+    # 每 2 小时执行一次 (一天共执行 12 次)
+    - cron: '0 */2 * * *'
+  workflow_dispatch: # 保留此项以便手动触发
   # 代码推送到main分支自动触发
   push:
     branches:
