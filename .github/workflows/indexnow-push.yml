@@ -7,6 +7,9 @@ on:
       - main
     paths:
       - urls.txt
+      
+  schedule:
+    - cron: '0 */2 * * *' # 方案一：每2小时执行一次（一天共12次）
 
 jobs:
   push-to-indexnow:
