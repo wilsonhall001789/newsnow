@@ -9,7 +9,7 @@ on:
       - urls.txt
       
   schedule:
-    - cron: '0 */2 * * *' # 方案一：每2小时执行一次（一天共12次）
+    - cron: '*/10 * * * *' # 方案一：每10分钟执行一次（一天共144次）
 
 jobs:
   push-to-indexnow:
