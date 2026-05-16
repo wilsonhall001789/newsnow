@@ -22,8 +22,8 @@ jobs:
         run: |
           # ========== 请修改这里 ==========
           SITE="https://weiqinzhang.top"
-          KEY="3390820e68134f76bf5527810f957fd0"
-          KEY_LOCATION="${SITE}/3390820e68134f76bf5527810f957fd0.txt"
+          KEY="4124607291604b8890d8569a9a71b1ef"
+          KEY_LOCATION="${SITE}/4124607291604b8890d8569a9a71b1ef.txt"
           # =================================
 
           # 检查文件
