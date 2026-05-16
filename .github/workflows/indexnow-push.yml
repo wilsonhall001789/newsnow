@@ -22,7 +22,7 @@ jobs:
         run: |
           # ========== 请修改这里 ==========
           SITE="https://weiqinzhang.top"
-          KEY="4124607291604b8890d8569a9a71b1ef"
+          KEY="${{ secrets.INDEXNOW_KEY }}"
           KEY_LOCATION="${SITE}/4124607291604b8890d8569a9a71b1ef.txt"
           # =================================
 
